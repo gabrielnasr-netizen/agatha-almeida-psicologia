@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+:root {
+  --color-paper: #faf4e9;
+  --color-paper-deep: #f1e4d2;
+  --color-panel: #fffaf1;
+  --color-ink: #3f3128;
+  --color-ink-soft: #6f6152;
+  --color-ink-faint: #9c8f7f;
+  --color-accent: #9c5b52;
+  --color-accent-soft: #c98f86;
+  --color-accent-2: #8f89a0;
+  --color-sage: #5f7566;
+  --color-sage-soft: #9db3a2;
+  --color-line: rgba(63, 49, 40, 0.14);
+  --color-line-strong: rgba(63, 49, 40, 0.26);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-paper: #211a13;
+    --color-paper-deep: #2a2119;
+    --color-panel: #271f17;
+    --color-ink: #f1e4d2;
+    --color-ink-soft: #cabaa5;
+    --color-ink-faint: #8c7d6b;
+    --color-accent: #dda296;
+    --color-accent-soft: #a86a5f;
+    --color-accent-2: #b3aec2;
+    --color-sage: #9fb3a2;
+    --color-sage-soft: #5f7566;
+    --color-line: rgba(241, 228, 210, 0.14);
+    --color-line-strong: rgba(241, 228, 210, 0.26);
+  }
+}
+
+:root[data-theme="dark"] {
+  --color-paper: #211a13;
+  --color-paper-deep: #2a2119;
+  --color-panel: #271f17;
+  --color-ink: #f1e4d2;
+  --color-ink-soft: #cabaa5;
+  --color-ink-faint: #8c7d6b;
+  --color-accent: #dda296;
+  --color-accent-soft: #a86a5f;
+  --color-accent-2: #b3aec2;
+  --color-sage: #9fb3a2;
+  --color-sage-soft: #5f7566;
+  --color-line: rgba(241, 228, 210, 0.14);
+  --color-line-strong: rgba(241, 228, 210, 0.26);
+}
+
+@theme inline {
+  --color-paper: var(--color-paper);
+  --color-paper-deep: var(--color-paper-deep);
+  --color-panel: var(--color-panel);
+  --color-ink: var(--color-ink);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-ink-faint: var(--color-ink-faint);
+  --color-accent: var(--color-accent);
+  --color-accent-soft: var(--color-accent-soft);
+  --color-accent-2: var(--color-accent-2);
+  --color-sage: var(--color-sage);
+  --color-sage-soft: var(--color-sage-soft);
+  --color-line: var(--color-line);
+  --color-line-strong: var(--color-line-strong);
+  --font-display: var(--font-fraunces);
+  --font-body: var(--font-source-sans);
+  --font-label: var(--font-plex-mono);
+}
+
+* {
+  border-color: var(--color-line);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body), -apple-system, "Segoe UI", sans-serif;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display), Georgia, serif;
+  text-wrap: balance;
+}
+
+::selection {
+  background: var(--color-accent-soft);
+  color: #fff;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.container-page {
+  max-width: 72rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .container-page {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+.prose-copy {
+  max-width: 66ch;
+}
+
+.prose-copy p {
+  margin-bottom: 1.1em;
+  line-height: 1.7;
+}
+
+.prose-copy p:last-child {
+  margin-bottom: 0;
+}
