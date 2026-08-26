@@ -36,6 +36,17 @@ export default function PrivacidadePage() {
           </p>
 
           <h2 className="mt-8 text-xl text-[var(--color-ink)]">
+            Onde os dados ficam armazenados
+          </h2>
+          <p>
+            Os dados enviados pelo formulário são armazenados em um banco de
+            dados no <strong>Supabase</strong>, empresa que atua como operadora
+            de dados nos termos da LGPD — ou seja, guarda a informação em
+            nosso nome, sob nossas instruções, e não a utiliza para
+            finalidade própria.
+          </p>
+
+          <h2 className="mt-8 text-xl text-[var(--color-ink)]">
             Base legal e finalidade
           </h2>
           <p>

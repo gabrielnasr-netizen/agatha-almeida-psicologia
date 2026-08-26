@@ -1,37 +1,48 @@
 "use client";
 
-import { useState } from "react";
+import { useActionState } from "react";
+import { useFormStatus } from "react-dom";
 import Link from "next/link";
+import { submitContactForm, type ContactFormState } from "@/app/contato/actions";
+
+const initialState: ContactFormState = { status: "idle" };
+
+function SubmitButton() {
+  const { pending } = useFormStatus();
+  return (
+    <button
+      type="submit"
+      disabled={pending}
+      className="inline-flex items-center rounded-full bg-[var(--color-ink)] px-6 py-3 text-sm font-medium text-[var(--color-paper)] transition-colors hover:bg-[var(--color-accent)] disabled:opacity-60"
+    >
+      {pending ? "Enviando…" : "Enviar mensagem"}
+    </button>
+  );
+}
 
 export default function ContactForm() {
-  const [status, setStatus] = useState<"idle" | "sent">("idle");
+  const [state, formAction] = useActionState(submitContactForm, initialState);
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    // Protótipo: ainda não há backend/e-mail configurado para receber o
-    // formulário. Quando definirmos o destino (e-mail da Agatha, ou um
-    // serviço como Resend), este handler passa a enviar de verdade.
-    setStatus("sent");
-  }
-
-  if (status === "sent") {
+  if (state.status === "success") {
     return (
       <div className="rounded-2xl border border-[var(--color-accent)] bg-[var(--color-paper-deep)] p-6 text-sm text-[var(--color-ink-soft)]">
-        <p className="font-medium text-[var(--color-ink)]">
-          Formulário de demonstração — ainda não conectado.
-        </p>
+        <p className="font-medium text-[var(--color-ink)]">Mensagem enviada.</p>
         <p className="mt-2">
-          Neste protótipo o envio ainda não chega a lugar nenhum de verdade.
-          Assim que definirmos onde as mensagens devem chegar (e-mail da
-          Agatha ou outro serviço), este formulário passa a funcionar de
-          fato. Por enquanto, use o WhatsApp para contato real.
+          Obrigada por escrever. A Agatha costuma responder em breve — se for
+          urgente, use o WhatsApp.
         </p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
+    <form action={formAction} className="space-y-5">
+      {(state.status === "error" || state.status === "not_configured") && (
+        <div className="rounded-xl border border-[var(--color-line-strong)] bg-[var(--color-paper-deep)] p-4 text-sm text-[var(--color-ink-soft)]">
+          {state.message}
+        </div>
+      )}
+
       <div>
         <label htmlFor="nome" className="block text-sm font-medium text-[var(--color-ink)]">
           Nome
@@ -90,12 +101,7 @@ export default function ContactForm() {
         </label>
       </div>
 
-      <button
-        type="submit"
-        className="inline-flex items-center rounded-full bg-[var(--color-ink)] px-6 py-3 text-sm font-medium text-[var(--color-paper)] transition-colors hover:bg-[var(--color-accent)]"
-      >
-        Enviar mensagem
-      </button>
+      <SubmitButton />
     </form>
   );
 }

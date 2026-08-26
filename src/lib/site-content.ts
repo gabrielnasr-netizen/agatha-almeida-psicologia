@@ -7,7 +7,7 @@ export const site = {
   crp: "CRP a confirmar", // nunca publicar um número não confirmado diretamente pela Agatha
   approach: "Terapia Cognitivo-Comportamental (TCC)",
   modality: "Atendimento psicológico", // modalidade (online/presencial) pendente de confirmação — Discovery §03
-  whatsappNumber: "5511999999999", // placeholder — substituir pelo número real antes de publicar
+  whatsappNumber: "5511983335993",
   price: {
     session: "R$ 150",
     duration: "50 min",

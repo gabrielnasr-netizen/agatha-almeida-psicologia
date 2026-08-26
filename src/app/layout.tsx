@@ -4,9 +4,10 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import StructuredData from "@/components/StructuredData";
+import { siteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://agathaalmeida.com.br"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Agatha Almeida | Psicóloga — Terapia Cognitivo-Comportamental",
     template: "%s | Agatha Almeida",
