@@ -4,30 +4,42 @@ import PlaceholderPhoto from "@/components/PlaceholderPhoto";
 import OrganicMotif from "@/components/OrganicMotif";
 import WhatsAppCTA from "@/components/WhatsAppCTA";
 import Reveal from "@/components/Reveal";
+import Parallax from "@/components/Parallax";
 
 const situacoes = [
-  "Ansiedade que atrapalha o dia a dia",
-  "Autoestima abalada ou insegurança constante",
-  "Dificuldades em relacionamentos",
-  "Sobrecarga emocional e esgotamento",
-  "Vontade de se conhecer melhor",
-];
+  { text: "Ansiedade que atrapalha o dia a dia", tone: "sage" },
+  { text: "Autoestima abalada ou insegurança constante", tone: "gold" },
+  { text: "Dificuldades em relacionamentos", tone: "clay" },
+  { text: "Sobrecarga emocional e esgotamento", tone: "wine" },
+  { text: "Vontade de se conhecer melhor", tone: "moss" },
+] as const;
+
+const dotColor: Record<(typeof situacoes)[number]["tone"], string> = {
+  sage: "var(--color-sage)",
+  gold: "var(--color-gold)",
+  clay: "var(--color-clay)",
+  wine: "var(--color-wine-soft)",
+  moss: "var(--color-moss)",
+};
 
 const passos = [
   {
     n: "1",
     title: "Primeiro contato",
     text: "Você me chama, conta brevemente o que te trouxe até aqui e combinamos um horário — sem burocracia.",
+    color: "var(--color-clay-soft)",
   },
   {
     n: "2",
     title: "Primeira sessão",
     text: "Um espaço para nos conhecermos. Não é preciso chegar com respostas prontas.",
+    color: "var(--color-gold-soft)",
   },
   {
     n: "3",
     title: "Processo terapêutico",
     text: "Sessões regulares, com objetivos definidos junto com você e revisados ao longo do caminho.",
+    color: "var(--color-sage-soft)",
   },
 ];
 
@@ -36,7 +48,12 @@ export default function Home() {
     <>
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-[var(--color-line)]">
-        <OrganicMotif className="pointer-events-none absolute -right-24 -top-24 h-[420px] w-[420px] opacity-70" />
+        <Parallax
+          offset={70}
+          className="pointer-events-none absolute -right-24 -top-24 h-[460px] w-[460px] opacity-70"
+        >
+          <OrganicMotif className="h-full w-full" />
+        </Parallax>
         <div className="container-page relative py-16 sm:py-24 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <Reveal>
             <span className="font-[family-name:var(--font-label)] text-xs uppercase tracking-[0.14em] text-[var(--color-accent)]">
@@ -68,11 +85,13 @@ export default function Home() {
           </Reveal>
 
           <Reveal delay={0.15}>
-            <PlaceholderPhoto
-              label="Retrato ou ambiente de atendimento"
-              spec="Vertical 4:5, retrato da Agatha da cintura para cima ou foto do ambiente de atendimento (reaproveitar/regravar a foto atual do hero, que já funciona bem), iluminação natural suave, espaço negativo para não brigar com o texto."
-              tone="warm"
-            />
+            <Parallax offset={18}>
+              <PlaceholderPhoto
+                label="Retrato ou ambiente de atendimento"
+                spec="Vertical 4:5, retrato da Agatha da cintura para cima ou foto do ambiente de atendimento (reaproveitar/regravar a foto atual do hero, que já funciona bem), iluminação natural suave, espaço negativo para não brigar com o texto."
+                tone="warm"
+              />
+            </Parallax>
           </Reveal>
         </div>
       </section>
@@ -81,12 +100,14 @@ export default function Home() {
       <section className="border-b border-[var(--color-line)] bg-[var(--color-panel)]">
         <div className="container-page py-16 sm:py-20 grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
           <Reveal>
-            <PlaceholderPhoto
-              label="Retrato editorial da Agatha"
-              spec="Vertical 4:5, enquadramento da cintura para cima, olhando levemente fora da câmera, fundo neutro claro, iluminação lateral suave, resolução mínima 2500px."
-              tone="lilac"
-              aspect="aspect-[4/5]"
-            />
+            <Parallax offset={16}>
+              <PlaceholderPhoto
+                label="Retrato editorial da Agatha"
+                spec="Vertical 4:5, enquadramento da cintura para cima, olhando levemente fora da câmera, fundo neutro claro, iluminação lateral suave, resolução mínima 2500px."
+                tone="lilac"
+                aspect="aspect-[4/5]"
+              />
+            </Parallax>
           </Reveal>
           <Reveal delay={0.1}>
             <span className="font-[family-name:var(--font-label)] text-xs uppercase tracking-[0.14em] text-[var(--color-accent)]">
@@ -126,9 +147,12 @@ export default function Home() {
           </Reveal>
           <div className="mt-10 grid gap-6 sm:grid-cols-3">
             {passos.map((p, i) => (
-              <Reveal key={p.n} delay={i * 0.08}>
+              <Reveal key={p.n} delay={i * 0.1}>
                 <div className="rounded-2xl border border-[var(--color-line)] bg-[var(--color-panel)] p-6 h-full">
-                  <span className="font-[family-name:var(--font-display)] text-3xl italic text-[var(--color-accent-soft)]">
+                  <span
+                    className="font-[family-name:var(--font-display)] text-3xl italic"
+                    style={{ color: p.color }}
+                  >
                     {p.n}
                   </span>
                   <h3 className="mt-3 text-lg text-[var(--color-ink)]">{p.title}</h3>
@@ -150,11 +174,39 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Pausa editorial — foto ampla do ambiente */}
+      <section className="relative border-b border-[var(--color-line)] overflow-hidden">
+        <Parallax offset={50}>
+          <div className="relative h-[52vh] min-h-[340px] max-h-[560px] w-full bg-gradient-to-br from-[var(--color-sage-soft)]/35 via-[var(--color-paper-deep)] to-[var(--color-paper)] flex items-center justify-center">
+            <div className="text-center px-6">
+              <span className="block font-[family-name:var(--font-label)] text-[0.65rem] tracking-[0.14em] uppercase text-[var(--color-accent)]">
+                Espaço reservado
+              </span>
+              <span className="mt-2 block font-[family-name:var(--font-display)] text-lg text-[var(--color-ink)]">
+                Ambiente de atendimento, formato amplo
+              </span>
+            </div>
+          </div>
+        </Parallax>
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 p-6 sm:p-10 flex items-end justify-between gap-4">
+          <Reveal>
+            <p className="font-[family-name:var(--font-display)] italic text-2xl sm:text-3xl text-[var(--color-ink)] max-w-md">
+              Um espaço pensado para você desacelerar.
+            </p>
+          </Reveal>
+          <p className="hidden sm:block max-w-xs text-right text-xs text-[var(--color-ink-faint)] leading-snug">
+            Horizontal 21:9, ambiente de atendimento visto de ângulo mais
+            aberto, luz natural, sem pessoas (ou Agatha de costas/desfocada
+            ao fundo) — ver pedido completo na seção de imagens.
+          </p>
+        </div>
+      </section>
+
       {/* TCC em um parágrafo */}
-      <section className="border-b border-[var(--color-line)] bg-[var(--color-paper-deep)]">
+      <section className="border-b border-[var(--color-line)] bg-[var(--color-blush-deep)]">
         <div className="container-page py-16 sm:py-20 grid gap-8 lg:grid-cols-2 lg:items-center">
           <Reveal>
-            <span className="font-[family-name:var(--font-label)] text-xs uppercase tracking-[0.14em] text-[var(--color-accent)]">
+            <span className="font-[family-name:var(--font-label)] text-xs uppercase tracking-[0.14em] text-[var(--color-clay)]">
               Abordagem
             </span>
             <h2 className="mt-3 text-3xl text-[var(--color-ink)]">
@@ -173,7 +225,7 @@ export default function Home() {
             </div>
             <Link
               href="/tcc"
-              className="mt-4 inline-block text-sm font-medium text-[var(--color-accent)] hover:text-[var(--color-ink)]"
+              className="mt-4 inline-block text-sm font-medium text-[var(--color-clay)] hover:text-[var(--color-ink)]"
             >
               Entenda como funciona a TCC →
             </Link>
@@ -196,11 +248,14 @@ export default function Home() {
             <ul className="mt-8 grid gap-3 sm:grid-cols-2 max-w-2xl">
               {situacoes.map((s) => (
                 <li
-                  key={s}
+                  key={s.text}
                   className="flex items-start gap-3 rounded-xl border border-[var(--color-line)] bg-[var(--color-panel)] px-4 py-3 text-sm text-[var(--color-ink-soft)]"
                 >
-                  <span className="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-[var(--color-sage)]" />
-                  {s}
+                  <span
+                    className="mt-1.5 h-1.5 w-1.5 flex-none rounded-full"
+                    style={{ background: dotColor[s.tone] }}
+                  />
+                  {s.text}
                 </li>
               ))}
             </ul>
@@ -212,7 +267,7 @@ export default function Home() {
       <section className="border-b border-[var(--color-line)] bg-[var(--color-panel)]">
         <div className="container-page py-16 sm:py-20 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
           <Reveal>
-            <span className="font-[family-name:var(--font-label)] text-xs uppercase tracking-[0.14em] text-[var(--color-accent)]">
+            <span className="font-[family-name:var(--font-label)] text-xs uppercase tracking-[0.14em] text-[var(--color-gold)]">
               Agenda
             </span>
             <h2 className="mt-3 text-3xl text-[var(--color-ink)] max-w-md">
@@ -226,7 +281,7 @@ export default function Home() {
           <Reveal delay={0.1}>
             <Link
               href="/agenda"
-              className="inline-flex items-center rounded-full bg-[var(--color-ink)] px-6 py-3 text-sm font-medium text-[var(--color-paper)] transition-colors hover:bg-[var(--color-accent)] whitespace-nowrap"
+              className="inline-flex items-center rounded-full bg-[var(--color-ink)] px-6 py-3 text-sm font-medium text-[var(--color-paper)] transition-colors hover:bg-[var(--color-gold)] whitespace-nowrap"
             >
               Ver agenda completa
             </Link>
@@ -273,23 +328,23 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contato final */}
-      <section className="bg-[var(--color-paper-deep)]">
-        <div className="container-page py-16 sm:py-20 text-center">
+      {/* Contato final — fechamento com mais contraste */}
+      <section className="bg-[var(--color-wine)] text-[var(--color-paper)]">
+        <div className="container-page py-20 sm:py-28 text-center">
           <Reveal className="mx-auto max-w-xl">
-            <h2 className="text-3xl text-[var(--color-ink)]">
+            <h2 className="text-3xl sm:text-4xl">
               Dar o primeiro passo pode começar com uma mensagem simples.
             </h2>
-            <p className="mt-3 text-[var(--color-ink-soft)]">
+            <p className="mt-3 opacity-80">
               Sem compromisso, sem pressa — no seu tempo.
             </p>
-            <div className="mt-7 flex flex-wrap justify-center gap-3">
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
               <WhatsAppCTA message="Olá, Agatha. Conheci seu trabalho e gostaria de saber mais sobre o atendimento.">
                 Falar no WhatsApp
               </WhatsAppCTA>
               <Link
                 href="/contato"
-                className="inline-flex items-center rounded-full border border-[var(--color-line-strong)] px-5 py-3 text-sm text-[var(--color-ink)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+                className="inline-flex items-center rounded-full border border-white/30 px-5 py-3 text-sm text-[var(--color-paper)] hover:border-white/70"
               >
                 Outras formas de contato
               </Link>

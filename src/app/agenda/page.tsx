@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
-import AvailabilityPicker from "@/components/AvailabilityPicker";
+import AvailabilityCalendar from "@/components/AvailabilityCalendar";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
   title: "Agenda",
-  description: "Veja os próximos horários disponíveis para atendimento.",
+  description: "Veja os próximos horários disponíveis para atendimento, por mês ou por semana.",
 };
 
 export default function AgendaPage() {
@@ -24,17 +24,17 @@ export default function AgendaPage() {
               <strong className="text-[var(--color-ink)]">
                 Protótipo em construção:
               </strong>{" "}
-              os horários abaixo são dados de demonstração, não a agenda real
-              da Agatha. Para ligar isso ao Google Calendar de verdade (sem
-              nunca expor dados de outros pacientes), a recomendação técnica
-              é Cal.com/Calendly conectado via OAuth usando FreeBusy — ver
-              Discovery §17. Falta só a conta e a autorização da Agatha para
-              ativar.
+              o calendário abaixo já tem a visão de mês e semana prontas,
+              mas os horários mostrados ainda são dados de demonstração. O
+              código já sabe buscar a disponibilidade real no Google Calendar
+              da Agatha (via FreeBusy, que nunca revela detalhe de outros
+              atendimentos) assim que ela compartilhar a agenda com uma
+              conta de serviço — ver instruções no README do projeto.
             </div>
           </Reveal>
 
           <Reveal delay={0.1}>
-            <AvailabilityPicker />
+            <AvailabilityCalendar />
           </Reveal>
         </div>
       </section>

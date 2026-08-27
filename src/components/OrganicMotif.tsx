@@ -48,8 +48,9 @@ export default function OrganicMotif({ className = "" }: { className?: string })
         .motif-line-2 { animation-duration: 17s; animation-delay: -4s; }
         .motif-line-3 { animation-duration: 20s; animation-delay: -9s; }
         @keyframes motif-breathe {
-          0%, 100% { transform: scale(1) translate(0, 0); }
-          50% { transform: scale(1.015) translate(-3px, 2px); }
+          0% { transform: scale(1) rotate(0deg) translate(0, 0); }
+          50% { transform: scale(1.04) rotate(1.2deg) translate(-6px, 4px); }
+          100% { transform: scale(1) rotate(0deg) translate(0, 0); }
         }
         @media (prefers-reduced-motion: reduce) {
           .motif-line { animation: none; }

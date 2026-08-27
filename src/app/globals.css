@@ -14,6 +14,20 @@
   --color-sage-soft: #9db3a2;
   --color-line: rgba(63, 49, 40, 0.14);
   --color-line-strong: rgba(63, 49, 40, 0.26);
+
+  /* Variações da mesma família — para dar variedade entre seções sem
+     perder a identidade única (Discovery §13). Nunca usadas puras em
+     grandes áreas: sempre como acento ou fundo de seção pontual. */
+  --color-clay: #7c4a3f;
+  --color-clay-soft: #b47a6c;
+  --color-blush: #e9d3c5;
+  --color-blush-deep: #dcb9a6;
+  --color-gold: #a97c3f;
+  --color-gold-soft: #d0ab6f;
+  --color-wine: #6b3644;
+  --color-wine-soft: #9c5f6c;
+  --color-moss: #435347;
+  --color-moss-soft: #6d8172;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -31,6 +45,17 @@
     --color-sage-soft: #5f7566;
     --color-line: rgba(241, 228, 210, 0.14);
     --color-line-strong: rgba(241, 228, 210, 0.26);
+
+    --color-clay: #c4897a;
+    --color-clay-soft: #8a5a4d;
+    --color-blush: #3a2c26;
+    --color-blush-deep: #4a3830;
+    --color-gold: #d1a468;
+    --color-gold-soft: #8a6a3d;
+    --color-wine: #b98292;
+    --color-wine-soft: #6b3644;
+    --color-moss: #90a695;
+    --color-moss-soft: #435347;
   }
 }
 
@@ -48,6 +73,17 @@
   --color-sage-soft: #5f7566;
   --color-line: rgba(241, 228, 210, 0.14);
   --color-line-strong: rgba(241, 228, 210, 0.26);
+
+  --color-clay: #c4897a;
+  --color-clay-soft: #8a5a4d;
+  --color-blush: #3a2c26;
+  --color-blush-deep: #4a3830;
+  --color-gold: #d1a468;
+  --color-gold-soft: #8a6a3d;
+  --color-wine: #b98292;
+  --color-wine-soft: #6b3644;
+  --color-moss: #90a695;
+  --color-moss-soft: #435347;
 }
 
 @theme inline {
@@ -64,6 +100,16 @@
   --color-sage-soft: var(--color-sage-soft);
   --color-line: var(--color-line);
   --color-line-strong: var(--color-line-strong);
+  --color-clay: var(--color-clay);
+  --color-clay-soft: var(--color-clay-soft);
+  --color-blush: var(--color-blush);
+  --color-blush-deep: var(--color-blush-deep);
+  --color-gold: var(--color-gold);
+  --color-gold-soft: var(--color-gold-soft);
+  --color-wine: var(--color-wine);
+  --color-wine-soft: var(--color-wine-soft);
+  --color-moss: var(--color-moss);
+  --color-moss-soft: var(--color-moss-soft);
   --font-display: var(--font-fraunces);
   --font-body: var(--font-source-sans);
   --font-label: var(--font-plex-mono);

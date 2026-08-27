@@ -62,13 +62,55 @@ para `.env.local` e preencha. Em produção: Vercel → Project Settings →
 Environment Variables → `SUPABASE_URL` e `SUPABASE_ANON_KEY`, depois faça
 redeploy.
 
+## Agenda (Google Calendar)
+
+A página `/agenda` já tem a interface completa (visão de mês e de semana,
+`src/components/AvailabilityCalendar.tsx`), mas mostra dados de demonstração
+até a integração real ser ativada. O código em `src/lib/google-calendar.ts`
+já sabe consultar a agenda de verdade via **FreeBusy** — o método mais seguro
+porque a API só devolve horários ocupados, nunca título, participantes ou
+qualquer detalhe de outro atendimento (ver Discovery §17).
+
+**1. Criar uma conta de serviço no Google Cloud**
+- Em [console.cloud.google.com](https://console.cloud.google.com), crie (ou
+  reutilize) um projeto
+- Ative a **Google Calendar API** (menu APIs & Services → Library)
+- Em **Credentials** → **Create Credentials** → **Service Account**, crie uma
+  conta de serviço
+- Na aba **Keys** dessa conta de serviço, **Add Key → JSON** — isso baixa um
+  arquivo com `client_email` e `private_key`
+
+**2. Compartilhar a agenda da Agatha com essa conta de serviço**
+- No Google Calendar da Agatha (a conta real dela, não a nossa), abra as
+  configurações da agenda em questão → **Compartilhar com pessoas específicas**
+- Adicione o e-mail da conta de serviço (algo como
+  `nome@projeto.iam.gserviceaccount.com`)
+- Permissão: **"Ver apenas informações de disponibilidade (ocupado/livre)"**
+  — nunca dar permissão de ver detalhes dos eventos
+
+**3. Configurar as variáveis de ambiente** (local: `.env.local`; produção:
+Vercel → Environment Variables):
+
+```
+GOOGLE_CALENDAR_ID=email-da-agenda-da-agatha@gmail.com
+GOOGLE_SERVICE_ACCOUNT_EMAIL=nome@projeto.iam.gserviceaccount.com
+GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
+SESSION_DURATION_MINUTES=50
+```
+
+A `PRIVATE_KEY` vem do JSON baixado no passo 1 — cole o valor completo do
+campo `private_key` entre aspas, mantendo os `\n`.
+
+Assim que essas três variáveis existirem, a página `/agenda` passa a mostrar
+disponibilidade real automaticamente — nenhuma mudança de código necessária.
+
 ## Pendências conhecidas
 
 - **Fotografias**: nenhuma imagem de banco foi usada. Os espaços reservados
   ("Espaço reservado") indicam exatamente que foto pedir e com qual enquadramento.
-- **Agenda**: a página `/agenda` roda sobre dados de demonstração. A
-  integração real com Google Calendar (via Cal.com/Calendly + FreeBusy)
-  depende de credenciais e autorização da Agatha.
+- **Agenda**: interface pronta (mês/semana), rodando sobre dados de
+  demonstração até a integração com o Google Calendar ser ativada (ver
+  seção acima).
 - **Formulário de contato**: já grava no Supabase assim que as variáveis de
   ambiente forem configuradas (ver seção acima) — ninguém recebe e-mail/
   notificação ainda quando uma mensagem chega, as respostas ficam só na
