@@ -1,25 +1,24 @@
 import Link from "next/link";
-import { site, faqs } from "@/lib/site-content";
+import { faqs } from "@/lib/site-content";
 import PlaceholderPhoto from "@/components/PlaceholderPhoto";
-import OrganicMotif from "@/components/OrganicMotif";
 import WhatsAppCTA from "@/components/WhatsAppCTA";
 import Reveal from "@/components/Reveal";
 import Parallax from "@/components/Parallax";
+import HeroReveal from "@/components/HeroReveal";
+import MeditationMotif from "@/components/motifs/MeditationMotif";
+import RippleMotif from "@/components/motifs/RippleMotif";
 
 const situacoes = [
-  { text: "Ansiedade que atrapalha o dia a dia", tone: "sage" },
-  { text: "Autoestima abalada ou insegurança constante", tone: "gold" },
-  { text: "Dificuldades em relacionamentos", tone: "clay" },
-  { text: "Sobrecarga emocional e esgotamento", tone: "wine" },
-  { text: "Vontade de se conhecer melhor", tone: "moss" },
+  { text: "Ansiedade que atrapalha o dia a dia", tone: "accent" },
+  { text: "Autoestima abalada ou insegurança constante", tone: "calm" },
+  { text: "Dificuldades em relacionamentos", tone: "accent" },
+  { text: "Sobrecarga emocional e esgotamento", tone: "calm" },
+  { text: "Vontade de se conhecer melhor", tone: "accent" },
 ] as const;
 
 const dotColor: Record<(typeof situacoes)[number]["tone"], string> = {
-  sage: "var(--color-sage)",
-  gold: "var(--color-gold)",
-  clay: "var(--color-clay)",
-  wine: "var(--color-wine-soft)",
-  moss: "var(--color-moss)",
+  accent: "var(--color-accent)",
+  calm: "var(--color-calm)",
 };
 
 const passos = [
@@ -27,74 +26,26 @@ const passos = [
     n: "1",
     title: "Primeiro contato",
     text: "Você me chama, conta brevemente o que te trouxe até aqui e combinamos um horário — sem burocracia.",
-    color: "var(--color-clay-soft)",
+    color: "var(--color-accent-soft)",
   },
   {
     n: "2",
     title: "Primeira sessão",
     text: "Um espaço para nos conhecermos. Não é preciso chegar com respostas prontas.",
-    color: "var(--color-gold-soft)",
+    color: "var(--color-calm-soft)",
   },
   {
     n: "3",
     title: "Processo terapêutico",
     text: "Sessões regulares, com objetivos definidos junto com você e revisados ao longo do caminho.",
-    color: "var(--color-sage-soft)",
+    color: "var(--color-accent-deep)",
   },
 ];
 
 export default function Home() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative overflow-hidden border-b border-[var(--color-line)]">
-        <Parallax
-          offset={70}
-          className="pointer-events-none absolute -right-24 -top-24 h-[460px] w-[460px] opacity-70"
-        >
-          <OrganicMotif className="h-full w-full" />
-        </Parallax>
-        <div className="container-page relative py-16 sm:py-24 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-          <Reveal>
-            <span className="font-[family-name:var(--font-label)] text-xs uppercase tracking-[0.14em] text-[var(--color-accent)]">
-              TCC · Ansiedade · Autoestima
-            </span>
-            <h1 className="mt-4 text-4xl sm:text-5xl lg:text-[3.4rem] leading-[1.05] text-[var(--color-ink)]">
-              Um espaço para você se ouvir com{" "}
-              <em className="italic text-[var(--color-accent)]">calma</em>.
-            </h1>
-            <p className="prose-copy mt-6 text-lg text-[var(--color-ink-soft)]">
-              Sou {site.name}, {site.role.toLowerCase()} com abordagem em{" "}
-              {site.approach}. Atendo com cuidado quem busca entender melhor a
-              ansiedade, fortalecer a autoestima e viver com mais leveza.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                href="/agenda"
-                className="inline-flex items-center rounded-full bg-[var(--color-ink)] px-6 py-3 text-sm font-medium text-[var(--color-paper)] transition-colors hover:bg-[var(--color-accent)]"
-              >
-                Ver disponibilidade
-              </Link>
-              <WhatsAppCTA
-                variant="outline"
-                message="Olá, Agatha. Conheci seu trabalho e gostaria de saber mais sobre o atendimento."
-              >
-                Falar no WhatsApp
-              </WhatsAppCTA>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.15}>
-            <Parallax offset={18}>
-              <PlaceholderPhoto
-                label="Retrato ou ambiente de atendimento"
-                spec="Vertical 4:5, retrato da Agatha da cintura para cima ou foto do ambiente de atendimento (reaproveitar/regravar a foto atual do hero, que já funciona bem), iluminação natural suave, espaço negativo para não brigar com o texto."
-                tone="warm"
-              />
-            </Parallax>
-          </Reveal>
-        </div>
-      </section>
+      <HeroReveal />
 
       {/* Sobre — resumo */}
       <section className="border-b border-[var(--color-line)] bg-[var(--color-panel)]">
@@ -118,10 +69,10 @@ export default function Home() {
             </h2>
             <div className="prose-copy mt-5 text-[var(--color-ink-soft)]">
               <p>
-                Meu compromisso é oferecer um espaço acolhedor e seguro para
-                quem busca fortalecer a saúde mental e a autoestima,
-                enfrentando a ansiedade e os desafios emocionais do dia a
-                dia — sem julgamento, no seu tempo.
+                Cada processo terapêutico tem seu próprio ritmo. Meu papel é
+                oferecer estrutura e cuidado o suficiente para que você se
+                sinta seguro para explorar o que precisa — sem pressa e sem
+                julgamento.
               </p>
             </div>
             <Link
@@ -135,8 +86,9 @@ export default function Home() {
       </section>
 
       {/* Como funciona */}
-      <section className="border-b border-[var(--color-line)]">
-        <div className="container-page py-16 sm:py-20">
+      <section className="relative overflow-hidden border-b border-[var(--color-line)]">
+        <MeditationMotif className="pointer-events-none absolute -right-6 top-8 h-40 w-40 text-[var(--color-accent-soft)] opacity-30" />
+        <div className="container-page py-16 sm:py-20 relative">
           <Reveal>
             <span className="font-[family-name:var(--font-label)] text-xs uppercase tracking-[0.14em] text-[var(--color-accent)]">
               Como funciona
@@ -177,7 +129,7 @@ export default function Home() {
       {/* Pausa editorial — foto ampla do ambiente */}
       <section className="relative border-b border-[var(--color-line)] overflow-hidden">
         <Parallax offset={50}>
-          <div className="relative h-[52vh] min-h-[340px] max-h-[560px] w-full bg-gradient-to-br from-[var(--color-sage-soft)]/35 via-[var(--color-paper-deep)] to-[var(--color-paper)] flex items-center justify-center">
+          <div className="relative h-[52vh] min-h-[340px] max-h-[560px] w-full bg-gradient-to-br from-[var(--color-calm-soft)]/30 via-[var(--color-paper-deep)] to-[var(--color-paper)] flex items-center justify-center">
             <div className="text-center px-6">
               <span className="block font-[family-name:var(--font-label)] text-[0.65rem] tracking-[0.14em] uppercase text-[var(--color-accent)]">
                 Espaço reservado
@@ -203,10 +155,10 @@ export default function Home() {
       </section>
 
       {/* TCC em um parágrafo */}
-      <section className="border-b border-[var(--color-line)] bg-[var(--color-blush-deep)]">
+      <section className="border-b border-[var(--color-line)] bg-[var(--color-panel)]">
         <div className="container-page py-16 sm:py-20 grid gap-8 lg:grid-cols-2 lg:items-center">
           <Reveal>
-            <span className="font-[family-name:var(--font-label)] text-xs uppercase tracking-[0.14em] text-[var(--color-clay)]">
+            <span className="font-[family-name:var(--font-label)] text-xs uppercase tracking-[0.14em] text-[var(--color-accent)]">
               Abordagem
             </span>
             <h2 className="mt-3 text-3xl text-[var(--color-ink)]">
@@ -225,7 +177,7 @@ export default function Home() {
             </div>
             <Link
               href="/tcc"
-              className="mt-4 inline-block text-sm font-medium text-[var(--color-clay)] hover:text-[var(--color-ink)]"
+              className="mt-4 inline-block text-sm font-medium text-[var(--color-accent)] hover:text-[var(--color-ink)]"
             >
               Entenda como funciona a TCC →
             </Link>
@@ -264,10 +216,11 @@ export default function Home() {
       </section>
 
       {/* Disponibilidade preview */}
-      <section className="border-b border-[var(--color-line)] bg-[var(--color-panel)]">
-        <div className="container-page py-16 sm:py-20 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+      <section className="relative overflow-hidden border-b border-[var(--color-line)] bg-[var(--color-panel)]">
+        <RippleMotif className="pointer-events-none absolute -right-8 -top-8 h-56 w-56 text-[var(--color-calm-soft)] opacity-40" />
+        <div className="container-page py-16 sm:py-20 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center relative">
           <Reveal>
-            <span className="font-[family-name:var(--font-label)] text-xs uppercase tracking-[0.14em] text-[var(--color-gold)]">
+            <span className="font-[family-name:var(--font-label)] text-xs uppercase tracking-[0.14em] text-[var(--color-calm)]">
               Agenda
             </span>
             <h2 className="mt-3 text-3xl text-[var(--color-ink)] max-w-md">
@@ -281,7 +234,7 @@ export default function Home() {
           <Reveal delay={0.1}>
             <Link
               href="/agenda"
-              className="inline-flex items-center rounded-full bg-[var(--color-ink)] px-6 py-3 text-sm font-medium text-[var(--color-paper)] transition-colors hover:bg-[var(--color-gold)] whitespace-nowrap"
+              className="inline-flex items-center rounded-full bg-[var(--color-ink)] px-6 py-3 text-sm font-medium text-[var(--color-paper)] transition-colors hover:bg-[var(--color-calm)] whitespace-nowrap"
             >
               Ver agenda completa
             </Link>
@@ -328,8 +281,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contato final — fechamento com mais contraste */}
-      <section className="bg-[var(--color-wine)] text-[var(--color-paper)]">
+      {/* Contato final — fechamento com mais contraste, mesma família de cor */}
+      <section className="bg-[var(--color-accent-deep)] text-[var(--color-paper)]">
         <div className="container-page py-20 sm:py-28 text-center">
           <Reveal className="mx-auto max-w-xl">
             <h2 className="text-3xl sm:text-4xl">

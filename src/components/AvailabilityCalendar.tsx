@@ -168,7 +168,7 @@ export default function AvailabilityCalendar() {
                 >
                   {date.getDate()}
                   {hasSlots && (
-                    <span className="h-1 w-1 rounded-full" style={{ background: "var(--color-gold)" }} />
+                    <span className="h-1 w-1 rounded-full" style={{ background: "var(--color-calm)" }} />
                   )}
                 </button>
               );

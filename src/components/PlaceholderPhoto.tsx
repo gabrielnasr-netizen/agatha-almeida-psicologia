@@ -8,8 +8,8 @@ type PlaceholderPhotoProps = {
 
 const tones: Record<NonNullable<PlaceholderPhotoProps["tone"]>, string> = {
   warm: "from-[var(--color-accent-soft)]/35 via-[var(--color-paper-deep)] to-[var(--color-paper)]",
-  sage: "from-[var(--color-sage-soft)]/35 via-[var(--color-paper-deep)] to-[var(--color-paper)]",
-  lilac: "from-[var(--color-accent-2)]/30 via-[var(--color-paper-deep)] to-[var(--color-paper)]",
+  sage: "from-[var(--color-calm-soft)]/35 via-[var(--color-paper-deep)] to-[var(--color-paper)]",
+  lilac: "from-[var(--color-accent-deep)]/25 via-[var(--color-paper-deep)] to-[var(--color-paper)]",
 };
 
 /**

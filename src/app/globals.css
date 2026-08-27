@@ -1,89 +1,53 @@
 @import "tailwindcss";
 
 :root {
-  --color-paper: #faf4e9;
-  --color-paper-deep: #f1e4d2;
-  --color-panel: #fffaf1;
-  --color-ink: #3f3128;
-  --color-ink-soft: #6f6152;
-  --color-ink-faint: #9c8f7f;
-  --color-accent: #9c5b52;
-  --color-accent-soft: #c98f86;
-  --color-accent-2: #8f89a0;
-  --color-sage: #5f7566;
-  --color-sage-soft: #9db3a2;
-  --color-line: rgba(63, 49, 40, 0.14);
-  --color-line-strong: rgba(63, 49, 40, 0.26);
-
-  /* Variações da mesma família — para dar variedade entre seções sem
-     perder a identidade única (Discovery §13). Nunca usadas puras em
-     grandes áreas: sempre como acento ou fundo de seção pontual. */
-  --color-clay: #7c4a3f;
-  --color-clay-soft: #b47a6c;
-  --color-blush: #e9d3c5;
-  --color-blush-deep: #dcb9a6;
-  --color-gold: #a97c3f;
-  --color-gold-soft: #d0ab6f;
-  --color-wine: #6b3644;
-  --color-wine-soft: #9c5f6c;
-  --color-moss: #435347;
-  --color-moss-soft: #6d8172;
+  --color-paper: #f7f0e6;
+  --color-paper-deep: #ecdfcd;
+  --color-panel: #fdf9f1;
+  --color-ink: #3a2c22;
+  --color-ink-soft: #6c5c4c;
+  --color-ink-faint: #9c8b78;
+  --color-accent: #a4614f;
+  --color-accent-soft: #cf9a86;
+  --color-accent-deep: #7c4636;
+  --color-calm: #3f5d57;
+  --color-calm-soft: #7fa39a;
+  --color-line: rgba(58, 44, 34, 0.14);
+  --color-line-strong: rgba(58, 44, 34, 0.26);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --color-paper: #211a13;
-    --color-paper-deep: #2a2119;
-    --color-panel: #271f17;
-    --color-ink: #f1e4d2;
-    --color-ink-soft: #cabaa5;
+    --color-paper: #201810;
+    --color-paper-deep: #291f16;
+    --color-panel: #251c14;
+    --color-ink: #ede1d1;
+    --color-ink-soft: #c7b8a4;
     --color-ink-faint: #8c7d6b;
-    --color-accent: #dda296;
-    --color-accent-soft: #a86a5f;
-    --color-accent-2: #b3aec2;
-    --color-sage: #9fb3a2;
-    --color-sage-soft: #5f7566;
-    --color-line: rgba(241, 228, 210, 0.14);
-    --color-line-strong: rgba(241, 228, 210, 0.26);
-
-    --color-clay: #c4897a;
-    --color-clay-soft: #8a5a4d;
-    --color-blush: #3a2c26;
-    --color-blush-deep: #4a3830;
-    --color-gold: #d1a468;
-    --color-gold-soft: #8a6a3d;
-    --color-wine: #b98292;
-    --color-wine-soft: #6b3644;
-    --color-moss: #90a695;
-    --color-moss-soft: #435347;
+    --color-accent: #d99a86;
+    --color-accent-soft: #a4614f;
+    --color-accent-deep: #e6b6a4;
+    --color-calm: #8fb3aa;
+    --color-calm-soft: #3f5d57;
+    --color-line: rgba(237, 225, 209, 0.14);
+    --color-line-strong: rgba(237, 225, 209, 0.26);
   }
 }
 
 :root[data-theme="dark"] {
-  --color-paper: #211a13;
-  --color-paper-deep: #2a2119;
-  --color-panel: #271f17;
-  --color-ink: #f1e4d2;
-  --color-ink-soft: #cabaa5;
+  --color-paper: #201810;
+  --color-paper-deep: #291f16;
+  --color-panel: #251c14;
+  --color-ink: #ede1d1;
+  --color-ink-soft: #c7b8a4;
   --color-ink-faint: #8c7d6b;
-  --color-accent: #dda296;
-  --color-accent-soft: #a86a5f;
-  --color-accent-2: #b3aec2;
-  --color-sage: #9fb3a2;
-  --color-sage-soft: #5f7566;
-  --color-line: rgba(241, 228, 210, 0.14);
-  --color-line-strong: rgba(241, 228, 210, 0.26);
-
-  --color-clay: #c4897a;
-  --color-clay-soft: #8a5a4d;
-  --color-blush: #3a2c26;
-  --color-blush-deep: #4a3830;
-  --color-gold: #d1a468;
-  --color-gold-soft: #8a6a3d;
-  --color-wine: #b98292;
-  --color-wine-soft: #6b3644;
-  --color-moss: #90a695;
-  --color-moss-soft: #435347;
+  --color-accent: #d99a86;
+  --color-accent-soft: #a4614f;
+  --color-accent-deep: #e6b6a4;
+  --color-calm: #8fb3aa;
+  --color-calm-soft: #3f5d57;
+  --color-line: rgba(237, 225, 209, 0.14);
+  --color-line-strong: rgba(237, 225, 209, 0.26);
 }
 
 @theme inline {
@@ -95,21 +59,11 @@
   --color-ink-faint: var(--color-ink-faint);
   --color-accent: var(--color-accent);
   --color-accent-soft: var(--color-accent-soft);
-  --color-accent-2: var(--color-accent-2);
-  --color-sage: var(--color-sage);
-  --color-sage-soft: var(--color-sage-soft);
+  --color-accent-deep: var(--color-accent-deep);
+  --color-calm: var(--color-calm);
+  --color-calm-soft: var(--color-calm-soft);
   --color-line: var(--color-line);
   --color-line-strong: var(--color-line-strong);
-  --color-clay: var(--color-clay);
-  --color-clay-soft: var(--color-clay-soft);
-  --color-blush: var(--color-blush);
-  --color-blush-deep: var(--color-blush-deep);
-  --color-gold: var(--color-gold);
-  --color-gold-soft: var(--color-gold-soft);
-  --color-wine: var(--color-wine);
-  --color-wine-soft: var(--color-wine-soft);
-  --color-moss: var(--color-moss);
-  --color-moss-soft: var(--color-moss-soft);
   --font-display: var(--font-fraunces);
   --font-body: var(--font-source-sans);
   --font-label: var(--font-plex-mono);

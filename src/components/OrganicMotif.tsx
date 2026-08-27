@@ -24,14 +24,14 @@ export default function OrganicMotif({ className = "" }: { className?: string })
         />
         <path
           d="M30,220 C110,260 190,140 270,240 C320,300 360,240 385,260"
-          stroke="var(--color-sage-soft)"
+          stroke="var(--color-calm-soft)"
           strokeWidth="1.4"
           opacity="0.5"
           className="motif-line motif-line-2"
         />
         <path
           d="M60,320 C140,280 210,360 300,300 C340,275 360,300 380,320"
-          stroke="var(--color-accent-2)"
+          stroke="var(--color-accent-deep)"
           strokeWidth="1.2"
           opacity="0.45"
           className="motif-line motif-line-3"
