@@ -281,8 +281,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contato final — fechamento com mais contraste, mesma família de cor */}
-      <section className="bg-[var(--color-accent-deep)] text-[var(--color-paper)]">
+      {/* Contato final — fechamento com mais contraste, mesma família de cor.
+          Usa --color-block (não --color-accent-deep): esse token precisa
+          continuar um marrom escuro e sólido nos dois temas — accent-deep
+          inverte entre claro/escuro para funcionar como texto, o que
+          quebrava esse fundo no dark mode (virava rosa claro). */}
+      <section className="bg-[var(--color-block)] text-[var(--color-paper)]">
         <div className="container-page py-20 sm:py-28 text-center">
           <Reveal className="mx-auto max-w-xl">
             <h2 className="text-3xl sm:text-4xl">

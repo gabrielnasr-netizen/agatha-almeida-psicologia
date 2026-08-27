@@ -14,6 +14,13 @@
   --color-calm-soft: #7fa39a;
   --color-line: rgba(58, 44, 34, 0.14);
   --color-line-strong: rgba(58, 44, 34, 0.26);
+
+  /* Fundo sólido para blocos de destaque (ex.: CTA final). Não inverte
+     entre temas de propósito — accent-deep inverte (fica claro no escuro
+     porque ali serve de TEXTO sobre fundo escuro); um fundo em bloco
+     precisa continuar escuro/saturado nos dois temas, senão vira um rosa
+     claro sem contraste com o texto claro por cima. */
+  --color-block: #5f3527;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -31,6 +38,7 @@
     --color-calm-soft: #3f5d57;
     --color-line: rgba(237, 225, 209, 0.14);
     --color-line-strong: rgba(237, 225, 209, 0.26);
+    --color-block: #4a2a1f;
   }
 }
 
@@ -48,6 +56,7 @@
   --color-calm-soft: #3f5d57;
   --color-line: rgba(237, 225, 209, 0.14);
   --color-line-strong: rgba(237, 225, 209, 0.26);
+  --color-block: #4a2a1f;
 }
 
 @theme inline {
@@ -62,6 +71,7 @@
   --color-accent-deep: var(--color-accent-deep);
   --color-calm: var(--color-calm);
   --color-calm-soft: var(--color-calm-soft);
+  --color-block: var(--color-block);
   --color-line: var(--color-line);
   --color-line-strong: var(--color-line-strong);
   --font-display: var(--font-fraunces);
